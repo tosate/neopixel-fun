@@ -1,6 +1,7 @@
 
 #include <Adafruit_NeoPixel.h>
 #include "rainbow.h"
+
 // which pin on the Arduino is connected to the NeoPixels?
 int pin = 6;
 
@@ -16,8 +17,8 @@ Adafruit_NeoPixel *pixels;
 
 void setup() {
   pixels = new Adafruit_NeoPixel(numPixels, pin, pixelFormat);
-  pixels->begin();          // INITIALIZE NeoPixel strip object (REQUIRED)
-  pixels->show();           // Torn OFF all pixels ASAP
+  pixels->begin();           // INITIALIZE NeoPixel strip object (REQUIRED)
+  pixels->show();            // Torn OFF all pixels ASAP
   pixels->setBrightness(50); // Set BRIGHTNESS to about 1/5 (max = 255)
 }
 
@@ -50,22 +51,13 @@ void calculateColor(int angle, pixelColor *pixel) {
 }
 
 void loop() {
-  int i = 0;
+  pixelColor colors[numPixels];
   
-  pixelColor color;
-  while(true) {
-    resetAll();
-    for(int i=0; i<numPixels; i++) {
-      calculateColor(i * 36 % 360, &color);
-      pixels->setPixelColor(i, pixels->Color(color.red, color.green, color.blue));
-    }
-    pixels->show();
-    delay(1000);
-  }
-}
-
-void resetAll() {
   for(int i=0; i<numPixels; i++) {
-    pixels->setPixelColor(i, pixels->Color(0, 0, 0));
+    calculateColor(i * (360/numPixels), &colors[i]);
+    pixels->setPixelColor(i, pixels->Color(colors[i].red, colors[i].green, colors[i].blue));
   }
+  
+  pixels->show();
+  delay(50);
 }
