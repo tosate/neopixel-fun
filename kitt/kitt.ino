@@ -2,7 +2,7 @@
 
 #include <Adafruit_NeoPixel.h>
 
-// Which pin oth the Arduino is connected to the NeoPixels?
+// Which pin to the Arduino is connected to the NeoPixels?
 int pin = 6;
 
 // How many NeoPixels are attached to the Arduino?
