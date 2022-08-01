@@ -24,12 +24,16 @@ void setup() {
 
 void loop() {
   // K.I.T.T.
-  for(int i=0; i<10; i++) {
+  for(int i=0; i<5; i++) {
     kittScanner(255, 0, 0);
   }
   // K.A.R.R
-  for(int i=0; i<10; i++) {
+  for(int i=0; i<5; i++) {
     kittScanner(255, 255, 0);
+  }
+  // Blue
+  for(int i=0; i<5; i++) {
+    kittScanner(0, 0, 255);
   }
 }
 
